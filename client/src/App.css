@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(13, 138, 221);
+    cursor: pointer;
+}
+
+.navbar{
+    background-color: rgb(230, 230, 230);
+    height: auto;
+    padding: 5px 0;
+}
+
+.navsection{
+    margin: auto;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.duet-logo{
+    width: 7%;
+}
+
+.link-list{
+    display: inline-flex;
+    list-style: none;
+}
+
+.link-list-item{
+ margin: auto 35px;
+ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btn{
+    margin: auto 10px !important;
+}

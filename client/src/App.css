@@ -43,3 +43,56 @@ a{
 .card{
     margin: auto;
 }
+.questionPage{
+text-align: center;
+width: 80%;
+margin: auto;
+}
+
+.question-main-heading{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 35px;
+    margin-top: 100px;
+}
+
+.guidelines{
+    text-align: left;
+    width: 60%;
+    margin: auto;
+}
+
+.guideline-para, .note{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 15px;
+}
+
+.guideline-list{
+    list-style: circle;
+}
+
+.guideline-list-item{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.highlighted{
+    color: red;
+}
+.question-form{
+    width: 80%;
+    margin: auto;
+    text-align: center !important;
+    margin-bottom: 75px !important ;
+    overflow: hidden;
+}
+.question-input{
+    width: 100%;
+    margin: 15px auto !important;
+}
+.question-submit-btn{
+    display: block !important;
+    float: right;
+}
+.profanity-check{
+    float: right;
+    margin: auto 10px !important;
+}

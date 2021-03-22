@@ -102,14 +102,38 @@ margin: auto;
     margin-top: 5%;
 }
 
-.login-heading{
+.login-heading,.buildprofile-heading,.signup-heading{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.login-form{
+.login-form, .signup-form{
     width: 20%;
     margin: auto;
 }
-.login-input{
+.login-input, .signup-input{
     width: 100%;
     margin: 15px auto !important;
+}
+.signup-page{
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+}
+.buildprofile-heading{
+    margin: 15px;
+}
+.buildprofile{
+    width: 80%;
+    margin: auto;
+}
+.profile-input-line{
+margin: 15px !important;
+}
+
+.profile-input-noline{
+    display: block !important;
+    margin: 15px !important;
+    width: 50% !important;
+}
+.designation-select{
+    width: 32%;
 }

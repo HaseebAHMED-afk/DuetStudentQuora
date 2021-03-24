@@ -137,3 +137,19 @@ margin: 15px !important;
 .designation-select{
     width: 32%;
 }
+.img-section{
+    justify-content: center;
+    text-align: center;
+}
+.profile-img{
+    border-radius: 50px;
+    width: 150px;
+    margin: auto;
+    border: 2px solid gray;
+}
+.input-img{
+    margin: 25px auto;
+    padding: auto !important;
+    text-align: center;
+    justify-content: center;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "../App.css";
 import TextField from "@material-ui/core/TextField";
 import {
@@ -7,17 +7,21 @@ import {
   MenuItem,
   Select,
   FormControl,
-  Tooltip,
-  IconButton,
 } from "@material-ui/core";
 
 const BuildProfile = () => {
+
+  
+
   return (
     <div className="buildprofile-page">
       <h1 className="buildprofile-heading">
         Now, it's time to build a catchy profile.
       </h1>
+      
       <div className="buildprofile">
+      
+        
         <TextField
           label="First Name"
           name="firstName"
@@ -121,25 +125,8 @@ const BuildProfile = () => {
           color="primary"
           className="profile-input-line"
         />
-        <input
-          accept="image/jpeg"
-          id="faceImage"
-          type="file"
-        />
-        <Tooltip title="Select Image">
-          <label htmlFor="faceImage">
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-            >
-              <PhotoCamera fontSize="large" />
-            </IconButton>
-          </label>
-        </Tooltip>
-        <Button  color="primary">
-          Save
-        </Button>
+      
+
         <Button
           variant="contained"
           color="primary"

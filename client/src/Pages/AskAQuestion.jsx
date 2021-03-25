@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import '../App.css'
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, InputLabel, FormControl } from '@material-ui/core';
 
 const AskAQuestion = () => {
 
     const [title , setTitle] = useState('')
     const [question, setQuestion] = useState('')
+    const [query , setQuery] = useState('')
     const [approved , setApproved] = useState(false)
 
     const handleTitleChange = (e) => {
@@ -22,18 +23,28 @@ const AskAQuestion = () => {
         questionOnSubmit()
     }
 
+    const questionOnSubmit = () => {
+        var newQuestion = {
+            title,
+            question,
+            query
+        }
+        console.log(newQuestion);
+    }
+
+    const profanityCheck = () => {
+        
+        setApproved(true)
+    }
+    
     const handleOnCheck = () =>{
         profanityCheck()
     }
 
-    const questionOnSubmit = () => {
-        console.log(title , question);
+    const handleQuery = (e) => {
+        setQuery(e.target.value)
     }
 
-    const profanityCheck = () => {
-        setApproved(true)
-    }
-    
     
     return (
       <div className="questionPage">
@@ -65,8 +76,32 @@ const AskAQuestion = () => {
 
         <div className="question-form">
             <TextField onChange={handleTitleChange} value={title} variant='outlined' color='primary' label='Title' required className='question-input' />
-            <TextField onChange={handleQuestionChange} value={question} variant='outlined' color='primary' label='Question' required className='question-input' multiline rows={15} />
-            <Button onClick={handleOnSubmit} className='question-submit-btn' disabled={approved === true ? false : true}  variant='contained' color='primary' >Submit</Button>
+            <FormControl variant="outlined" className="profile-input-noline"  >
+          <InputLabel id="demo-simple-select-outlined-label">
+           Type Of Query
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            label="Type Of Query"
+            fullWidth={true}
+            style={{margin: 0}}
+            value={query}
+            onChange={handleQuery}
+          >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value={"Academics"}>Academics</MenuItem>
+            <MenuItem value={"Fees & Finance"}>Fees & Finance</MenuItem>
+            <MenuItem value={"Transportation"}>Transportation</MenuItem>
+            <MenuItem value={"Curricular and Co-Curricular Activities"}>Curricular and Co-Curricular Activities</MenuItem>
+            <MenuItem value={"General"}>General</MenuItem>
+            <MenuItem value={"Other"}>Other</MenuItem>
+          </Select>
+        </FormControl>
+            <TextField onChange={handleQuestionChange} value={question} variant='outlined' color='primary' label='Question' required={true} className='question-input' multiline rows={15} />
+            <Button onClick={handleOnSubmit} className='question-submit-btn' disabled={approved === true ? false : true} required={true} variant='contained' color='primary' >Submit</Button>
             <Button onClick={handleOnCheck} className='profanity-check' variant='outlined' color='secondary' >Check</Button>
         </div>
 

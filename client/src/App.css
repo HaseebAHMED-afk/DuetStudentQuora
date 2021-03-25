@@ -22,6 +22,9 @@ a{
     justify-content: space-between;
     align-items: center;
 }
+.MuiFormControl-root{
+    margin: 0;
+}
 
 .duet-logo{
     width: 7%;

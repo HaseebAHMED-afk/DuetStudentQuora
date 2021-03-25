@@ -11,7 +11,42 @@ import {
 
 const BuildProfile = () => {
 
-  
+  let [firstName , setFirstName] = useState('')
+  let [lastName , setLastName] = useState('')
+  let [fatherName , setFatherName] = useState('')
+  let [gender, setGender] = useState('')
+  let [cnic , setCnic] = useState('')
+  let [bloodGroup , setBloodGroup] = useState('')
+  let [rollNo , setRollNo] = useState('')
+  let [designation , setDesignation] = useState('')
+  let [department , setDepartment] = useState('')
+  let [batch , setBatch] = useState('')
+  let [enrolement , setEnrolement] = useState('')
+  let [contact , setContact] = useState('')
+
+
+  const handleClick = () => {
+    buildProfile();
+  }
+
+  const buildProfile = () => {
+    let newProfile = {
+      firstName,
+      lastName,
+      fatherName,
+      gender,
+      cnic,
+      bloodGroup,
+      rollNo,
+      designation,
+      department,
+      batch,
+      enrolement,
+      contact
+    }
+
+    console.log(newProfile);
+  }
 
   return (
     <div className="buildprofile-page">
@@ -28,6 +63,8 @@ const BuildProfile = () => {
           variant="outlined"
           color="primary"
           className="profile-input-line"
+          value={firstName}
+          onChange={(e) => {setFirstName(e.target.value)}}
         />
         <TextField
           label="Last Name"
@@ -35,6 +72,8 @@ const BuildProfile = () => {
           variant="outlined"
           color="primary"
           className="profile-input-line"
+          value={lastName}
+          onChange={(e) => {setLastName(e.target.value)}}
         />
         <TextField
           label="Father Name"
@@ -42,20 +81,34 @@ const BuildProfile = () => {
           variant="outlined"
           color="primary"
           className="profile-input-noline"
+          value={fatherName}
+          onChange={(e) => {setFatherName(e.target.value)}}
         />
-        <TextField
-          label="Gender"
-          name="gender"
-          variant="outlined"
-          color="primary"
-          className="profile-input-noline"
-        />
+        <FormControl variant="outlined" className="profile-input-noline">
+          <InputLabel id="demo-simple-select-outlined-label">
+            Gender
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            label="Gender"
+            className="designation-select"
+            fullWidth={true}
+            value={gender}
+            onChange={(e) => {setGender(e.target.value)}}
+          >
+            <MenuItem value={"Male"}>Male</MenuItem>
+            <MenuItem value={"Female"}>Female</MenuItem>
+          </Select>
+        </FormControl>
         <TextField
           label="CNIC"
           name="cnic"
           variant="outlined"
           color="primary"
           className="profile-input-line"
+          value={cnic}
+          onChange={(e) => {setCnic(e.target.value)}}
         />
         <TextField
           label="Blood Group"
@@ -63,6 +116,8 @@ const BuildProfile = () => {
           variant="outlined"
           color="primary"
           className="profile-input-line"
+          value={bloodGroup}
+          onChange={(e) => {setBloodGroup(e.target.value)}}
         />
         <TextField
           label="Roll Number"
@@ -70,6 +125,8 @@ const BuildProfile = () => {
           variant="outlined"
           color="primary"
           className="profile-input-noline"
+          value={rollNo}
+          onChange={(e) => {setRollNo(e.target.value)}}
         />
         <FormControl variant="outlined" className="profile-input-noline">
           <InputLabel id="demo-simple-select-outlined-label">
@@ -81,6 +138,8 @@ const BuildProfile = () => {
             label="Designation"
             className="designation-select"
             fullWidth={true}
+            value={designation}
+            onChange={(e) => {setDesignation(e.target.value)}}
           >
             <MenuItem value="">
               <em>None</em>
@@ -99,6 +158,8 @@ const BuildProfile = () => {
             label="Department"
             className="designation-select"
             fullWidth={true}
+            value={department}
+            onChange={(e) => {setDepartment(e.target.value)}}
           >
             <MenuItem value="">
               <em>None</em>
@@ -117,6 +178,17 @@ const BuildProfile = () => {
           variant="outlined"
           color="primary"
           className="profile-input-line"
+          value={batch}
+          onChange={(e) => {setBatch(e.target.value)}}
+        />
+         <TextField
+          label="Enrolement No."
+          name="enrolement"
+          variant="outlined"
+          color="primary"
+          className="profile-input-line"
+          value={enrolement}
+          onChange={(e) => {setEnrolement(e.target.value)}}
         />
         <TextField
           label="Contact No."
@@ -124,6 +196,8 @@ const BuildProfile = () => {
           variant="outlined"
           color="primary"
           className="profile-input-line"
+          value={contact}
+          onChange={(e) => {setContact(e.target.value)}}
         />
       
 
@@ -131,6 +205,7 @@ const BuildProfile = () => {
           variant="contained"
           color="primary"
           style={{ display: "block", margin: 15 }}
+          onClick={handleClick}
         >
           Build My Profile
         </Button>

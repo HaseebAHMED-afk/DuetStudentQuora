@@ -13,6 +13,8 @@ const BuildProfile = () => {
 
   let [firstName , setFirstName] = useState('')
   let [lastName , setLastName] = useState('')
+  let [userEmail , setUserEmail] = useState('')
+  let [userName , setUserName] = useState('')
   let [fatherName , setFatherName] = useState('')
   let [gender, setGender] = useState('')
   let [cnic , setCnic] = useState('')
@@ -74,6 +76,25 @@ const BuildProfile = () => {
           className="profile-input-line"
           value={lastName}
           onChange={(e) => {setLastName(e.target.value)}}
+        />
+        <TextField
+          label="Email"
+          name="userEmail"
+          variant="outlined"
+          color="primary"
+          className="profile-input-line"
+          value={userEmail}
+          onChange={(e) => {setUserEmail(e.target.value)}}
+        />
+        <p style={{color:'red'}} >* Must be as same as the one used to signup.</p>
+        <TextField
+          label="Username"
+          name="userName"
+          variant="outlined"
+          color="primary"
+          className="profile-input-line"
+          value={userName}
+          onChange={(e) => {setUserName(e.target.value)}}
         />
         <TextField
           label="Father Name"
@@ -170,6 +191,31 @@ const BuildProfile = () => {
             <MenuItem value={"Department Of Telecommunication Engineering"}>
               Department Of Telecommunication Engineering
             </MenuItem>
+            <MenuItem value={"Department Of Architecture and Planning"}>
+              Department Of Architecture and Planning
+            </MenuItem>
+            <MenuItem value={"Department Of Chemical Engineering"}>
+              Department Of Chemical Engineering
+            </MenuItem>
+            <MenuItem value={"Department Of Electronic Engineering"}>
+              Department Of Electronic Engineering
+            </MenuItem>
+            <MenuItem value={"Department Of Energy and Environment"}>
+              Department Of Energy and Environment
+            </MenuItem>
+            <MenuItem value={"Department Of Metallurgy and Materials Engineering"}>
+              Department Of Metallurgy and Materials Engineering
+            </MenuItem>
+            <MenuItem value={"Department Of Petroleum and Gas Engineering"}>
+              Department Of Petroleum and Gas Engineering
+            </MenuItem>
+            <MenuItem value={"Department Of Industrial Engineering and Management"}>
+              Department Of Industrial Engineering and Management
+            </MenuItem>
+            <MenuItem value={"Department Of Basic Sciences, Mathematics, English and Humanities"}>
+              Department Of Basic Sciences, Mathematics, English and Humanities
+            </MenuItem>
+            
           </Select>
         </FormControl>
         <TextField

@@ -33,6 +33,16 @@ const newProfileSchema = new Schema({
         type: String,
         required: true
     },
+    userEmail:{
+        type: String,
+        required:true,
+        unique:true
+    },
+    userName:{
+        type:String,
+        required: true,
+        unique:true
+    },
     fatherName: {
         type: String,
         required: true
@@ -42,7 +52,7 @@ const newProfileSchema = new Schema({
         required: true
     },
     cnic:{
-        type: Number,
+        type: String,
         required: true
     },
     bloodGroup:{
@@ -76,6 +86,27 @@ const newProfileSchema = new Schema({
 })
 
 const newProfile = mongoose.model("newProfile", newProfileSchema)
+
+const questionSchema = new Schema({
+    askedBy: {
+        type: String,
+        required: true
+    },
+    title:{
+        type:String,
+        required: true
+    },
+    queryType: {
+        type: String,
+        required: true
+    },
+    question:{
+        type: String,
+        required:true
+    }
+})
+
+const Question = mongoose.model('Question' , questionSchema)
 
 const connection = mongoose.connection;
 
@@ -122,6 +153,16 @@ app.post('/buildprofile' , (req,res) => {
     .catch((err)=>res.status(400).json('Error:'+err))
 })
 
+app.post('/askaquestion',(req,res)=>{
+    const newQuestion = new Question({
+        askedBy: req.body.askedBy,
+        title: req.body.title,
+        queryType: req.body.queryType,
+        question: req.body.question
+    })
+
+    newQuestion.save().then(()=>{res.json('Question added')}).catch((err)=>res.status(400).json('Error:'+err))
+})
 
 app.listen(5000 , () => {
     console.log('Server running on port 5000');

@@ -87,6 +87,12 @@ const newProfileSchema = new Schema({
 
 const newProfile = mongoose.model("newProfile", newProfileSchema)
 
+const answerSchema= new Schema({
+    answeredBy: String,
+    answer: String,
+    isAnswer: Boolean
+})
+
 const questionSchema = new Schema({
     askedBy: {
         type: String,
@@ -103,7 +109,13 @@ const questionSchema = new Schema({
     question:{
         type: String,
         required:true
-    }
+    },
+    isOpen: Boolean,
+    answers:[
+        {
+            type: answerSchema
+        }
+    ]
 })
 
 const Question = mongoose.model('Question' , questionSchema)
@@ -113,6 +125,26 @@ const connection = mongoose.connection;
 connection.once('open', ()=> {
     console.log('DB connection established');
 });
+
+// Home Page
+
+app.get("/", (req,res)=>{
+    Question.find().
+    then(question => res.json(question)).
+    catch(err => res.status(400).json('Error: '+err))
+})
+
+// Question Page
+
+app.get("/:id", (req,res)=>{
+    Question.findById(req.params.id).
+    then(question => res.json(question)).
+    catch(err => res.status(400).json('Error: '+err))
+})
+
+
+
+// Sign Up Page
 
 
 app.post('/signup' , (req,res)=> {
@@ -132,6 +164,24 @@ app.post('/signup' , (req,res)=> {
 
 
 })
+
+// Login Page
+
+app.post('/login', (req,res)=>{
+    const userEmail = req.body.email;
+
+   newUser.find({email:userEmail} , (err,foundUser)=>{
+       if(err){
+           console.log(err);
+       }else{
+           if(foundUser){
+               console.log('User Found');
+           }
+       }
+   })
+})
+
+// Profile Page
 
 app.post('/buildprofile' , (req,res) => {
     const profile = new newProfile({
@@ -153,12 +203,16 @@ app.post('/buildprofile' , (req,res) => {
     .catch((err)=>res.status(400).json('Error:'+err))
 })
 
+//Ask a Question Page
+
 app.post('/askaquestion',(req,res)=>{
     const newQuestion = new Question({
         askedBy: req.body.askedBy,
         title: req.body.title,
         queryType: req.body.queryType,
-        question: req.body.question
+        question: req.body.question,
+        isOpen: true,
+        answers:[]
     })
 
     newQuestion.save().then(()=>{res.json('Question added')}).catch((err)=>res.status(400).json('Error:'+err))

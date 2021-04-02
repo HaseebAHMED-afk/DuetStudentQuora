@@ -7,7 +7,7 @@ const Home = () => {
     let [data,setData] = useState([]);
 
     useEffect( async ()=>{
-
+        
         const {data} = await axios.get('http://localhost:5000/')
         await setData(data);
 

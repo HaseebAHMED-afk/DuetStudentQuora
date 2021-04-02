@@ -136,13 +136,6 @@ app.get("/", (req,res)=>{
     catch(err => res.status(400).json('Error: '+err))
 })
 
-// Question Page
-
-app.get("/:id", (req,res)=>{
-    Question.findById(req.params.id).
-    then(question => res.json(question)).
-    catch(err => res.status(400).json('Error: '+err))
-});
 
 
 
@@ -157,12 +150,14 @@ app.post('/signup' , (req,res)=> {
    const userPassword = req.body.password;
 
 
-   const User = new User({
+   const user = new User({
        userEmail,
        userPassword
    })
 
-   User.save().then(()=>{res.json('User added')})
+   user.save().then((response)=>{
+        res.json(response)
+   })
    .catch((err)=> res.status(400).json('Error:'+err))
 
 
@@ -245,6 +240,15 @@ app.post('/askaquestion',(req,res)=>{
 
     newQuestion.save().then(()=>{res.json('Question added')}).catch((err)=>res.status(400).json('Error:'+err))
 })
+
+// Question Page
+
+app.get("/:id", (req,res)=>{
+    Question.findById(req.params.id).
+    then(question => res.json(question)).
+    catch(err => res.status(400).json('Error: '+err))
+});
+
 
 app.listen(5000 , () => {
     console.log('Server running on port 5000');

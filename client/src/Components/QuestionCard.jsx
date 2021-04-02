@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import '../App.css'
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -52,7 +53,9 @@ const QuestionCard = ({askedBy,title,dated,question,id}) => {
         </Typography>
       </CardContent>
       <CardActions>
+        <Link to={`/${id}`} >
         <Button variant='outlined' color='secondary' size="small">View</Button>
+        </Link>
       </CardActions>
     </Card>
     </div>

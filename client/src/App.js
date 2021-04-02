@@ -7,6 +7,7 @@ import Profile from './Pages/Profile'
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import BuildProfile from './Pages/BuildProfile';
+import QuestionPage from './Pages/QuestionPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/askaquestion' element={<AskAQuestion />} />
+          <Route path='/:id' element={<QuestionPage />} />
           <Route path='/profile/:id' element={<Profile />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />

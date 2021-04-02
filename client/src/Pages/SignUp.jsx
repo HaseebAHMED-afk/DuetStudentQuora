@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core'
+import axios from 'axios'
 
 const SignUp = () => {
 
@@ -12,17 +13,18 @@ const SignUp = () => {
     let [password,setPassword] = useState('')
 
     const handleSignUp = () => {
-    navigate('/buildprofile')
+    
         signUp();
     }
 
-    const signUp = ()=>{
+    const signUp = async ()=>{
         let newSignUp = {
             email,
             password
         }
 
-        console.log(newSignUp);
+      let {status} = await  axios.post('http://localhost:5000/signup', newSignUp);
+      console.log(status);
     }
 
     return (

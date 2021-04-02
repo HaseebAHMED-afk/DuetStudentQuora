@@ -7,9 +7,6 @@ import axios from 'axios'
 
 const AskAQuestion = () => {
 
-    const postQuestion= () =>{
-
-    }
 
     const [title , setTitle] = useState('')
     const [question, setQuestion] = useState('')
@@ -36,7 +33,7 @@ const AskAQuestion = () => {
            askedBy:'slkfnlksfnlk'
         }
         
-        axios.post('http://localhost:5000/askaquestion',newQuestion).then((response)=>console.log(response))
+        axios.post('http://localhost:5000/askaquestion',newQuestion).then((response)=>console.log(response)).catch((err)=>console.log(err))
     }
 
     const profanityCheck = () => {

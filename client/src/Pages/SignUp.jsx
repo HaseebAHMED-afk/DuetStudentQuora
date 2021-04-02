@@ -12,6 +12,8 @@ const SignUp = () => {
     let [email,setEmail] = useState('')
     let [password,setPassword] = useState('')
 
+    let [error,setError] = useState('')
+
     const handleSignUp = () => {
     
         signUp();
@@ -23,8 +25,12 @@ const SignUp = () => {
             password
         }
 
-      let {status} = await  axios.post('http://localhost:5000/signup', newSignUp);
-      console.log(status);
+      let {data} = await  axios.post('http://localhost:5000/signup', newSignUp);
+      if(data.status===409){
+          setError(data.text)
+      }else{
+          navigate('/buildprofile')
+      }
     }
 
     return (
@@ -32,6 +38,7 @@ const SignUp = () => {
             <h1 className='signup-heading' >Sign Up</h1>
             <div className="signup-form">
             <TextField label='Email' type='Email'  name='email' variant='outlined' color='primary' className='signup-input' onChange={(e)=>{setEmail(e.target.value)}} />
+            <p style={{color:'red'}} >{error}</p>
             <TextField label='Password' type='password' name='password' variant='outlined' color='primary' className='signup-input' onChange={(e)=>{setPassword(e.target.value)}} />
             <Button onClick={handleSignUp} variant='contained' color='primary' >Sign Up</Button>
             </div>

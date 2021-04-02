@@ -8,8 +8,12 @@ import {
   Select,
   FormControl,
 } from "@material-ui/core";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 const BuildProfile = () => {
+
+  const navigate = useNavigate();
 
   let [firstName , setFirstName] = useState('')
   let [lastName , setLastName] = useState('')
@@ -31,11 +35,13 @@ const BuildProfile = () => {
     buildProfile();
   }
 
-  const buildProfile = () => {
+  const buildProfile =async () => {
     let newProfile = {
       firstName,
       lastName,
       fatherName,
+      userName,
+      userEmail,
       gender,
       cnic,
       bloodGroup,
@@ -47,7 +53,13 @@ const BuildProfile = () => {
       contact
     }
 
-    console.log(newProfile);
+    axios.post('http://localhost:5000/buildprofile' , newProfile).then((response)=>{
+      if(response){
+        if(response.status===200){
+          navigate('/')
+        }
+      }
+    }).catch((err)=>console.log(err))
   }
 
   return (

@@ -155,10 +155,23 @@ app.post('/signup' , (req,res)=> {
        userPassword
    })
 
-   user.save().then((response)=>{
-        res.json(response)
-   })
-   .catch((err)=> res.status(400).json('Error:'+err))
+   User.findOne({ userEmail })
+     .then((response) => {
+       if (response) {
+         if (response.userEmail === userEmail) {
+           res.json({status:409,text:"User already exist"})
+         }
+       }
+       else{
+        user
+        .save()
+        .then((response) => res.json(response))
+        .catch((err) => res.json(err));
+       }
+     })
+     .catch((err) => res.status(400).json("Error: " + err));
+
+  
 
 
 });
@@ -171,11 +184,11 @@ app.post('/login', (req,res)=>{
 
    User.find({userEmail}).then((response)=> {
        if(response.length === 0){
-        res.json("404")
+        res.json(404)
        }else{
         let tempPassword=response[0].userPassword;
         if(tempPassword!==password){
-            res.json('Wrong password')
+            res.json(403)
         }else{
             res.json(response)
         }

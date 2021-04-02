@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   
 
 
-const QuestionCard = () => {
+const QuestionCard = ({askedBy,title,dated,question,id}) => {
     const classes = useStyles();
 
     
@@ -39,20 +39,20 @@ const QuestionCard = () => {
             <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
-          askedby
+          {askedBy}
         </Typography>
         <Typography variant="h5" component="h2">
-          Title
+          {title}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          dated
+          {dated}
         </Typography>
         <Typography variant="body2" component="p">
-          question
+          {question}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant='outlined' color='secondary' size="small">see more</Button>
+        <Button variant='outlined' color='secondary' size="small">View</Button>
       </CardActions>
     </Card>
     </div>

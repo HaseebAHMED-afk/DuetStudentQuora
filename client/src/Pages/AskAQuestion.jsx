@@ -3,8 +3,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import '../App.css'
 import { Button, TextField, InputLabel, FormControl } from '@material-ui/core';
+import axios from 'axios'
 
 const AskAQuestion = () => {
+
+    const postQuestion= () =>{
+
+    }
 
     const [title , setTitle] = useState('')
     const [question, setQuestion] = useState('')
@@ -27,9 +32,11 @@ const AskAQuestion = () => {
         var newQuestion = {
             title,
             question,
-            query
+           queryType:query,
+           askedBy:'slkfnlksfnlk'
         }
-        console.log(newQuestion);
+        
+        axios.post('http://localhost:5000/askaquestion',newQuestion).then((response)=>console.log(response))
     }
 
     const profanityCheck = () => {

@@ -1,11 +1,11 @@
-const { json, response } = require('express');
 const express = require('express');
 const mongoose = require('mongoose');
-
+const cors = require('cors')
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/duetDB', {useCreateIndex: true , useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -111,6 +111,7 @@ const questionSchema = new Schema({
         type: String,
         required:true
     },
+    datePosted: String,
     isOpen: Boolean,
     answers:[
         {
@@ -231,11 +232,13 @@ app.get('/profile/:id',(req,res)=>{
 //Ask a Question Page
 
 app.post('/askaquestion',(req,res)=>{
+    let d = new Date();
     const newQuestion = new Question({
         askedBy: req.body.askedBy,
         title: req.body.title,
         queryType: req.body.queryType,
         question: req.body.question,
+        datePosted: String(d) ,
         isOpen: true,
         answers:[]
     })

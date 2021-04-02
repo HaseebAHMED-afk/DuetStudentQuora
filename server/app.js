@@ -1,3 +1,4 @@
+const { json, response } = require('express');
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -22,7 +23,7 @@ const newUserSchema = new Schema({
     }
 })
 
-const newUser = mongoose.model('NewUser',newUserSchema);
+const User = mongoose.model('NewUser',newUserSchema);
 
 const newProfileSchema = new Schema({
     firstName: {
@@ -85,7 +86,7 @@ const newProfileSchema = new Schema({
     }
 })
 
-const newProfile = mongoose.model("newProfile", newProfileSchema)
+const Profile = mongoose.model("newProfile", newProfileSchema)
 
 const answerSchema= new Schema({
     answeredBy: String,
@@ -140,7 +141,8 @@ app.get("/:id", (req,res)=>{
     Question.findById(req.params.id).
     then(question => res.json(question)).
     catch(err => res.status(400).json('Error: '+err))
-})
+});
+
 
 
 
@@ -154,7 +156,7 @@ app.post('/signup' , (req,res)=> {
    const userPassword = req.body.password;
 
 
-   const User = newUser({
+   const User = new User({
        userEmail,
        userPassword
    })
@@ -163,30 +165,38 @@ app.post('/signup' , (req,res)=> {
    .catch((err)=> res.status(400).json('Error:'+err))
 
 
-})
+});
 
 // Login Page
 
 app.post('/login', (req,res)=>{
     const userEmail = req.body.email;
+    const password = req.body.password;
 
-   newUser.find({email:userEmail} , (err,foundUser)=>{
-       if(err){
-           console.log(err);
+   User.find({userEmail}).then((response)=> {
+       if(response.length === 0){
+        res.json("404")
        }else{
-           if(foundUser){
-               console.log('User Found');
-           }
+        let tempPassword=response[0].userPassword;
+        if(tempPassword!==password){
+            res.json('Wrong password')
+        }else{
+            res.json(response)
+        }
+            
        }
    })
-})
+   .catch((err)=> res.status(404).json('Error:'+err))
+});
 
 // Profile Page
 
 app.post('/buildprofile' , (req,res) => {
-    const profile = new newProfile({
+    const profile = new Profile({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        userName:req.body.userName,
+        userEmail:req.body.userEmail,
         fatherName: req.body.fatherName,
         gender: req.body.gender,
         cnic: req.body.cnic,
@@ -201,7 +211,22 @@ app.post('/buildprofile' , (req,res) => {
 
     profile.save().then(()=>{res.json('Profile added')})
     .catch((err)=>res.status(400).json('Error:'+err))
-})
+});
+
+// app.get('/profiles/:id',(req,res)=>{
+//     let id =String(req.params.id);
+
+//     console.log(id);
+//     newProfile.find({userEmail: id}).then(()=> res.json(response))
+//     .catch(err => res.status(404).json('Error: '+err))
+// })
+
+app.get('/profile/:id',(req,res)=>{
+
+  Profile.findOne({userEmail:req.params.id}).then((response)=>res.json(response)).
+  catch((err)=>res.json(err))
+
+});
 
 //Ask a Question Page
 

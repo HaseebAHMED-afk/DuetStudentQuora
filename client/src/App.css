@@ -156,3 +156,10 @@ margin: 15px !important;
     text-align: center;
     justify-content: center;
 }
+
+.personal h2,.info h2,.uni-info h2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 25px;
+    color: rgb(41, 41, 41);
+
+}

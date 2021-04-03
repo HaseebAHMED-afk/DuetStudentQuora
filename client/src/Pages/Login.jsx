@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import "../App.css";
 import { Button } from "@material-ui/core";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import {Context} from '../GlobalState/Store'
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const [state , dispatch] = useContext(Context);
 
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
@@ -27,6 +30,7 @@ const Login = () => {
         } else if (response.data === 403) {
           setPasswordError("Incorrect Password");
         } else {
+          dispatch({type:'LOG_IN',payload:{LoggedIn:true , currentUser:"Curent user"}})
           navigate("/");
         }
       })
@@ -36,6 +40,8 @@ const Login = () => {
   const handleSubmit = () => {
     login();
   };
+
+  console.log(state);
   return (
     <div className="login-page">
       <h1 className="login-heading">You need to login to continue</h1>

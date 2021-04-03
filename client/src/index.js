@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Store from './GlobalState/Store';
 
 
 ReactDOM.render(
-
-    <App />,
-  document.getElementById('root')
+  <Store>
+    <App />
+  </Store>,
+  document.getElementById("root")
 );
 

@@ -1,8 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import QuestionCard from '../Components/QuestionCard'
 import axios from 'axios';
+import { Context } from '../GlobalState/Store'
 
 const Home = () => {
+
+
+    let [state , dispatch] = useContext(Context)
 
     let [data,setData] = useState([]);
 
@@ -13,6 +17,7 @@ const Home = () => {
 
     },[0])
 
+    console.log(state);
     console.log(data);
 
     return (

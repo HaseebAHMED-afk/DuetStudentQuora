@@ -3,7 +3,7 @@ import Reducer from './Reducer';
 
 const initialState ={
     loggedIn: false,
-    currentUser:''
+    currentUser:'HaseebAHMED-afk'
 }
 
 const Store = ({children}) => {

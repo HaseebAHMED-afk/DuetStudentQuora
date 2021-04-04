@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useContext} from "react";
 import "../App.css";
 import TextField from "@material-ui/core/TextField";
 import {
@@ -10,8 +10,12 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import {Context} from '../GlobalState/Store'
 
 const BuildProfile = () => {
+  const [state,dispatch] = useContext(Context);
+
+    console.log(state);
 
   const navigate = useNavigate();
 

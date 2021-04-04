@@ -1,17 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import '../App.css'
 import { Button, TextField, InputLabel, FormControl } from '@material-ui/core';
 import axios from 'axios'
+import { Context } from '../GlobalState/Store';
+import { useNavigate } from 'react-router-dom'
 
 const AskAQuestion = () => {
+
+    const [state,dispatch] = useContext(Context);
+
+    let navigate = useNavigate();
+
+    console.log(state);
 
 
     const [title , setTitle] = useState('')
     const [question, setQuestion] = useState('')
     const [query , setQuery] = useState('')
-    const [approved , setApproved] = useState(false)
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value)
@@ -30,20 +37,16 @@ const AskAQuestion = () => {
             title,
             question,
            queryType:query,
-           askedBy:'slkfnlksfnlk'
+           askedBy:'HaseebAHMED-afk'
         }
         
-        axios.post('http://localhost:5000/askaquestion',newQuestion).then((response)=>console.log(response)).catch((err)=>console.log(err))
+        axios.post('http://localhost:5000/askaquestion',newQuestion).then((response)=>{
+            console.log(response)
+            navigate('/')
+    
+    }).catch((err)=>console.log(err))
     }
 
-    const profanityCheck = () => {
-        
-        setApproved(true)
-    }
-    
-    const handleOnCheck = () =>{
-        profanityCheck()
-    }
 
     const handleQuery = (e) => {
         setQuery(e.target.value)
@@ -105,8 +108,8 @@ const AskAQuestion = () => {
           </Select>
         </FormControl>
             <TextField onChange={handleQuestionChange} value={question} variant='outlined' color='primary' label='Question' required={true} className='question-input' multiline rows={15} />
-            <Button onClick={handleOnSubmit} className='question-submit-btn' disabled={approved === true ? false : true} required={true} variant='contained' color='primary' >Submit</Button>
-            <Button onClick={handleOnCheck} className='profanity-check' variant='outlined' color='secondary' >Check</Button>
+            <Button onClick={handleOnSubmit} className='question-submit-btn'  variant='contained' color='primary' >Submit</Button>
+            {/* <Button onClick={handleOnCheck} className='profanity-check' variant='outlined' color='secondary' >Check</Button> */}
         </div>
 
        

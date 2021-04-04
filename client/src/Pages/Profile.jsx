@@ -1,7 +1,12 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import '../App.css'
+import {Context} from '../GlobalState/Store'
 
 const Profile = () => {
+
+  const [state,dispatch] = useContext(Context);
+
+    console.log(state);
     return (
       <div className="profile-page">
         <div className="personal">

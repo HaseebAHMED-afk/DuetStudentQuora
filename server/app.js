@@ -88,11 +88,6 @@ const newProfileSchema = new Schema({
 
 const Profile = mongoose.model("newProfile", newProfileSchema)
 
-const answerSchema= new Schema({
-    answeredBy: String,
-    answer: String,
-    isAnswer: Boolean
-})
 
 const questionSchema = new Schema({
     askedBy: {
@@ -113,11 +108,9 @@ const questionSchema = new Schema({
     },
     datePosted: String,
     isOpen: Boolean,
-    answers:[
-        {
-            type: answerSchema
-        }
-    ]
+    answers:{
+        type:Array
+    }
 })
 
 const Question = mongoose.model('Question' , questionSchema)
@@ -261,6 +254,18 @@ app.get("/:id", (req,res)=>{
     then(question => res.json(question)).
     catch(err => res.status(400).json('Error: '+err))
 });
+
+app.patch("/:id" , (req,res) =>{
+        
+    Question.findByIdAndUpdate(req.params.id, {
+        $push: {
+            answers: req.body.answer
+        }}, {new:true})
+     .then((response) => res.json(response))
+     .catch((err) => res.json(err));
+
+    
+} )
 
 
 app.listen(5000 , () => {

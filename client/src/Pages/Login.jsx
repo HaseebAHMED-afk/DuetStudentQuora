@@ -30,7 +30,7 @@ const Login = () => {
         } else if (response.data === 403) {
           setPasswordError("Incorrect Password");
         } else {
-          dispatch({type:'LOG_IN',payload:{LoggedIn:true , currentUser:"Curent user"}})
+          dispatch({type:'LOG_IN',payload:{LoggedIn:true , currentUser:"HaseebAHMED-afk"}})
           navigate("/");
         }
       })

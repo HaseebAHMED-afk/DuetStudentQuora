@@ -163,3 +163,29 @@ margin: 15px !important;
     color: rgb(41, 41, 41);
 
 }
+
+.question{
+    margin: 50px;
+}
+
+.question span {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.your-answer{
+    width: 80% !important;
+    justify-content: center;
+    margin: 50px !important;
+}
+.submit-answer{
+    margin: 50px !important;
+    margin-top: 5px !important;
+}
+
+.answer-border{
+    border: 1px solid gray;
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 5px;
+}
